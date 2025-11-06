@@ -8,9 +8,9 @@ import { Bucket } from "aws-cdk-lib/aws-s3";
 /**
  * @see https://docs.amplify.aws/react/build-a-backend/ to add storage, functions, and more
  */
-// const backend = defineBackend({
-//   auth
-// });
+const backend = defineBackend({
+  //auth
+});
 
 const customBucketStack = backend.createStack("design-image-processing-stack");
 
