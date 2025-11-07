@@ -41,6 +41,15 @@ backend.addOutput({
           },
         },
       },
+    ]
+  },
+});
+
+backend.addOutput({
+  storage: {
+    aws_region: customBucket2.env.region,
+    bucket_name: customBucket2.bucketName,
+    buckets: [
       {
         aws_region: customBucket2.env.region,
         bucket_name: customBucket2.bucketName,
