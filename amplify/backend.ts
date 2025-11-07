@@ -52,7 +52,8 @@ const authPolicy = new Policy(backend.stack, "customBucketAuthPolicy", {
       actions: [
         "s3:GetObject",
         "s3:PutObject", 
-        "s3:DeleteObject"
+        "s3:DeleteObject",
+        "s3:GetDataAccess"
       ],
       resources: [`${customBucket.bucketArn}/Caldera-Nexio-Files/*`,],
     }),
