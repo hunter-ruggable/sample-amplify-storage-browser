@@ -30,7 +30,7 @@ backend.addOutput({
         bucket_name: customBucket.bucketName,
         name: customBucket.bucketName,
         paths: {
-          "unprocessed/*": {
+          "Caldera-Nexio-Files/*": {
             guest: ["get", "list"],
             authenticated: ["get", "list", "write", "delete"],
           },
