@@ -71,7 +71,7 @@ const authPolicy = new Policy(backend.stack, "customBucketAuthPolicy", {
         "s3:DeleteObject",
         "s3:GetDataAccess"
       ],
-      resources: [`${customBucket.bucketArn}/Caldera-Nexio-Files/*`,`${customBucket2.bucketArn}/ruggable-design-backup-backup/*`],
+      resources: [`${customBucket.bucketArn}/Caldera-Nexio-Files/*`,`${customBucket2.bucketArn}/*`],
     }),
     new PolicyStatement({
       effect: Effect.ALLOW,
