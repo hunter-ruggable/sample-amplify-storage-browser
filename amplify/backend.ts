@@ -16,7 +16,7 @@ const customBucketStack = backend.createStack("design-image-processing-stack");
 
 // Import existing bucket
 const customBucket = Bucket.fromBucketAttributes(customBucketStack, "MyCustomBucket", {
-  bucketArn: "arn:aws:s3:::design-image-processing",
+  bucketArn: "arn:aws:s3:::esxi-nas-sync-test",
   region: "us-west-2"
 });
 
@@ -54,7 +54,7 @@ const authPolicy = new Policy(backend.stack, "customBucketAuthPolicy", {
         "s3:PutObject", 
         "s3:DeleteObject"
       ],
-      resources: [`${customBucket.bucketArn}/unprocessed/*`,],
+      resources: [`${customBucket.bucketArn}/Caldera-Nexio-Files/*`,],
     }),
     new PolicyStatement({
       effect: Effect.ALLOW,
@@ -65,7 +65,7 @@ const authPolicy = new Policy(backend.stack, "customBucketAuthPolicy", {
         ],
       conditions: {
         StringLike: {
-          "s3:prefix": ["unprocessed/*", "unprocessed/"],
+          "s3:prefix": ["Caldera-Nexio-Files/*", "Caldera-Nexio-Files/"],
         },
       },
     }),
