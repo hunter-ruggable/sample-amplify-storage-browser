@@ -78,15 +78,21 @@ const authPolicy = new Policy(backend.stack, "customBucketAuthPolicy", {
       actions: ["s3:ListBucket"],
       resources: [
         `${customBucket.bucketArn}`,
-        `${customBucket.bucketArn}/*`,
-        `${customBucket2.bucketArn}`,
-        `${customBucket2.bucketArn}/*`
+        `${customBucket.bucketArn}/*`
         ],
       conditions: {
         StringLike: {
-          "s3:prefix": ["Caldera-Nexio-Files/*", "Caldera-Nexio-Files/", "ruggable-design-backup-backup/*", "ruggable-design-backup-backup/"],
+          "s3:prefix": ["Caldera-Nexio-Files/*", "Caldera-Nexio-Files/",],
         },
       },
+    }),
+    new PolicyStatement({
+      effect: Effect.ALLOW,
+      actions: ["s3:ListBucket"],
+      resources: [
+        `${customBucket2.bucketArn}`,
+        `${customBucket2.bucketArn}/*`
+        ],
     }),
   ],
 });
