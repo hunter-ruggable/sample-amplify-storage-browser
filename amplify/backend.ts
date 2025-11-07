@@ -20,6 +20,11 @@ const customBucket = Bucket.fromBucketAttributes(customBucketStack, "MyCustomBuc
   region: "us-west-2"
 });
 
+const customBucket2 = Bucket.fromBucketAttributes(customBucketStack, "MyCustomBucket2", {
+  bucketArn: "arn:aws:s3:::ruggable-design-backup-backup",
+  region: "us-west-2"
+});
+
 backend.addOutput({
   storage: {
     aws_region: customBucket.env.region,
@@ -31,6 +36,17 @@ backend.addOutput({
         name: customBucket.bucketName,
         paths: {
           "Caldera-Nexio-Files/*": {
+            guest: ["get", "list"],
+            authenticated: ["get", "list", "write", "delete"],
+          },
+        },
+      },
+      {
+        aws_region: customBucket2.env.region,
+        bucket_name: customBucket2.bucketName,
+        name: customBucket2.bucketName,
+        paths: {
+          "ruggable-design-backup-backup/*": {
             guest: ["get", "list"],
             authenticated: ["get", "list", "write", "delete"],
           },
@@ -55,18 +71,20 @@ const authPolicy = new Policy(backend.stack, "customBucketAuthPolicy", {
         "s3:DeleteObject",
         "s3:GetDataAccess"
       ],
-      resources: [`${customBucket.bucketArn}/Caldera-Nexio-Files/*`,],
+      resources: [`${customBucket.bucketArn}/Caldera-Nexio-Files/*`,`${customBucket2.bucketArn}/ruggable-design-backup-backup/*`],
     }),
     new PolicyStatement({
       effect: Effect.ALLOW,
       actions: ["s3:ListBucket"],
       resources: [
         `${customBucket.bucketArn}`,
-        `${customBucket.bucketArn}/*`
+        `${customBucket.bucketArn}/*`,
+        `${customBucket2.bucketArn}`,
+        `${customBucket2.bucketArn}/*`
         ],
       conditions: {
         StringLike: {
-          "s3:prefix": ["Caldera-Nexio-Files/*", "Caldera-Nexio-Files/"],
+          "s3:prefix": ["Caldera-Nexio-Files/*", "Caldera-Nexio-Files/", "ruggable-design-backup-backup/*", "ruggable-design-backup-backup/"],
         },
       },
     }),
