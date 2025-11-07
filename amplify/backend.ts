@@ -46,7 +46,7 @@ backend.addOutput({
         bucket_name: customBucket2.bucketName,
         name: customBucket2.bucketName,
         paths: {
-          "ruggable-design-backup-backup/*": {
+          "*": {
             guest: ["get", "list"],
             authenticated: ["get", "list", "write", "delete"],
           },
