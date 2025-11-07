@@ -28,6 +28,7 @@ const customBucket2 = Bucket.fromBucketAttributes(customBucketStack, "MyCustomBu
 backend.addOutput({
   storage: {
     aws_region: customBucket.env.region,
+    bucket_name: customBucket.bucketName,
     buckets: [
       {
         aws_region: customBucket.env.region,
