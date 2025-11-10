@@ -98,7 +98,10 @@ const authPolicy = new Policy(backend.stack, "customBucketAuthPolicy", {
         ],
       conditions: {
         StringLike: {
-          "s3:prefix": ["Caldera-Nexio-Files/*", "Caldera-Nexio-Files/",],
+          "s3:prefix": [
+        `${customBucket.bucketArn}`,
+        `${customBucket.bucketArn}/*`
+        ],
         },
       },
     }),
