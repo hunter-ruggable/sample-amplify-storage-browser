@@ -96,14 +96,6 @@ const authPolicy = new Policy(backend.stack, "customBucketAuthPolicy", {
         `${customBucket.bucketArn}`,
         `${customBucket.bucketArn}/*`
         ],
-      conditions: {
-        StringLike: {
-          "s3:prefix": [
-        `${customBucket.bucketArn}`,
-        `${customBucket.bucketArn}/*`
-        ],
-        },
-      },
     }),
     new PolicyStatement({
       effect: Effect.ALLOW,
