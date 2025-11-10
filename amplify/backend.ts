@@ -26,7 +26,7 @@ const customBucket2 = Bucket.fromBucketAttributes(customBucketStack, "MyCustomBu
 });
 
 const customBucket3 = Bucket.fromBucketAttributes(customBucketStack, "MyCustomBucket3", {
-  bucketArn: "arn:aws:s3:::esxi-nas-sync-prod-backup ",
+  bucketArn: "arn:aws:s3:::esxi-nas-sync-prod-backup",
   region: "us-west-2"
 });
 
