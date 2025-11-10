@@ -25,6 +25,11 @@ const customBucket2 = Bucket.fromBucketAttributes(customBucketStack, "MyCustomBu
   region: "us-west-2"
 });
 
+const customBucket3 = Bucket.fromBucketAttributes(customBucketStack, "MyCustomBucket3", {
+  bucketArn: "arn:aws:s3:::esxi-nas-sync-prod-backup ",
+  region: "us-west-2"
+});
+
 backend.addOutput({
   storage: {
     aws_region: customBucket.env.region,
@@ -51,6 +56,17 @@ backend.addOutput({
             authenticated: ["get", "list", "write", "delete"],
           },
         },
+      },
+      {
+        aws_region: customBucket3.env.region,
+        bucket_name: customBucket3.bucketName,
+        name: customBucket3.bucketName,
+        paths: {
+          "*": {
+            guest: ["get", "list"],
+            authenticated: ["get", "list", "write", "delete"],
+          },
+        },
       }
     ]
   },
@@ -71,7 +87,7 @@ const authPolicy = new Policy(backend.stack, "customBucketAuthPolicy", {
         "s3:DeleteObject",
         "s3:GetDataAccess"
       ],
-      resources: [`${customBucket.bucketArn}/Caldera-Nexio-Files/*`,`${customBucket2.bucketArn}/*`],
+      resources: [`${customBucket.bucketArn}/Caldera-Nexio-Files/*`,`${customBucket2.bucketArn}/*`, `${customBucket3.bucketArn}/*`],
     }),
     new PolicyStatement({
       effect: Effect.ALLOW,
@@ -92,6 +108,14 @@ const authPolicy = new Policy(backend.stack, "customBucketAuthPolicy", {
       resources: [
         `${customBucket2.bucketArn}`,
         `${customBucket2.bucketArn}/*`
+        ],
+    }),
+    new PolicyStatement({
+      effect: Effect.ALLOW,
+      actions: ["s3:ListBucket"],
+      resources: [
+        `${customBucket3.bucketArn}`,
+        `${customBucket3.bucketArn}/*`
         ],
     }),
   ],
