@@ -16,7 +16,7 @@ const { StorageBrowser } = createStorageBrowser({
 
 function App() {
   return (
-    <Authenticator signUpAttributes={['preferred_username']}>
+    <Authenticator socialProviders={['google']}>
       {({ signOut }) => (
         <>
           <div className="header">
