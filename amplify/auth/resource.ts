@@ -13,7 +13,7 @@ export const auth = defineAuth({
         clientSecret: secret('GOOGLE_CLIENT_SECRET')
       },
       callbackUrls: [
-        'https://s3.test.rug.zone/profile'
+        'https://s3.test.rug.zone/'
       ],
       logoutUrls: ['https://s3.test.rug.zone/'],
     },
