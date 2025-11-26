@@ -10,7 +10,8 @@ export const auth = defineAuth({
     externalProviders: {
       google: {
         clientId: secret('GOOGLE_CLIENT_ID'),
-        clientSecret: secret('GOOGLE_CLIENT_SECRET')
+        clientSecret: secret('GOOGLE_CLIENT_SECRET'),
+        scopes: ['email', 'profile'], // Added 'email' scope
       },
       callbackUrls: [
         'https://s3.test.rug.zone/'
