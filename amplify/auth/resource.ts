@@ -19,11 +19,11 @@ export const auth = defineAuth({
     },
   },
 
-  // userAttributes: {
-  //   preferredUsername: {
-  //     mutable: true,
-  //     required: true
-  //   }
-  // },
+  userAttributes: {
+    email: {
+      mutable: false,
+      required: true,
+    },
+  },
   groups: ['admin']
 });
