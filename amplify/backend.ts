@@ -72,6 +72,12 @@ backend.addOutput({
   },
 });
 
+const { cfnUserPool } = backend.auth.resources.cfnResources
+
+cfnUserPool.adminCreateUserConfig = {
+  allowAdminCreateUserOnly: true,
+}
+
 // ... Unauthenticated/guest user policies and role attachments go here ...
 /*
   Define an inline policy to attach to Amplify's auth role
