@@ -43,7 +43,7 @@ backend.addOutput({
           "*": {
             guest: ["get", "list"],
             authenticated: ["get", "list", "write", "delete"],
-            groupselevated: ["get", "list", "write", "delete"], // Added elevated group permissions
+            //groupselevated: ["get", "list", "write", "delete"], // Added elevated group permissions
           },
         },
       },
