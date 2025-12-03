@@ -26,5 +26,5 @@ export const auth = defineAuth({
       required: true,
     },
   },
-  groups: ['admin']
+  groups: ['admin', 'elevated']
 });
