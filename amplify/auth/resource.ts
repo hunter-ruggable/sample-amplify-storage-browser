@@ -23,7 +23,7 @@ export const auth = defineAuth({
   userAttributes: {
     email: {
       mutable: false,
-      required: true,
+      required: false,
     },
   },
   groups: ['admin', 'elevated']

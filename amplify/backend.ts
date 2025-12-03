@@ -72,11 +72,11 @@ backend.addOutput({
   },
 });
 
-// const { cfnUserPool } = backend.auth.resources.cfnResources
+const { cfnUserPool } = backend.auth.resources.cfnResources
 
-// cfnUserPool.adminCreateUserConfig = {
-//   allowAdminCreateUserOnly: true,
-// }
+cfnUserPool.adminCreateUserConfig = {
+  allowAdminCreateUserOnly: true,
+}
 
 const authPolicy = new Policy(backend.stack, "customBucketUnauthPolicy", {
   statements: [
