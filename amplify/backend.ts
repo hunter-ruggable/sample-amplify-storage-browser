@@ -78,12 +78,29 @@ cfnUserPool.adminCreateUserConfig = {
   allowAdminCreateUserOnly: true,
 }
 
-// ... Unauthenticated/guest user policies and role attachments go here ...
-/*
-  Define an inline policy to attach to Amplify's auth role
-  This policy defines how authenticated users can access your existing bucket
-*/ 
-const authPolicy = new Policy(backend.stack, "customBucketAuthPolicy", {
+const authPolicy = new Policy(backend.stack, "customBucketUnauthPolicy", {
+  statements: [
+    new PolicyStatement({
+      effect: Effect.DENY,
+      actions: ["s3:GetObject"],
+      resources: [`${customBucket.bucketArn}/*`,`${customBucket2.bucketArn}/*`, `${customBucket3.bucketArn}/*`],
+    }),
+    new PolicyStatement({
+      effect: Effect.DENY,
+      actions: ["s3:ListBucket"],
+      resources: [
+        `${customBucket.bucketArn}`,
+        `${customBucket.bucketArn}/*`,
+        `${customBucket2.bucketArn}`,
+        `${customBucket2.bucketArn}/*`,
+        `${customBucket3.bucketArn}`,
+        `${customBucket3.bucketArn}/*`
+      ],
+    }),
+  ],
+});
+
+const authElevatedPolicy = new Policy(backend.stack, "customBucketAuthElevatedPolicy", {
   statements: [
     new PolicyStatement({
       effect: Effect.ALLOW,
@@ -122,5 +139,10 @@ const authPolicy = new Policy(backend.stack, "customBucketAuthPolicy", {
   ],
 });
 
+
+
+
 // Add the policies to the authenticated user role
+
 backend.auth.resources.authenticatedUserIamRole.attachInlinePolicy(authPolicy);
+backend.auth.resources.groups["elevated"].role.attachInlinePolicy(authElevatedPolicy);
