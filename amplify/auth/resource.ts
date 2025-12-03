@@ -11,7 +11,8 @@ export const auth = defineAuth({
       google: {
         clientId: secret('GOOGLE_CLIENT_ID'),
         clientSecret: secret('GOOGLE_CLIENT_SECRET'),
-        scopes: ['email', 'profile'], // Added 'email' scope
+        scopes: [ 'profile'],
+        //scopes: ['email', 'profile'], // Added 'email' scope
       },
       callbackUrls: [
         'https://s3.test.rug.zone/'
@@ -20,11 +21,11 @@ export const auth = defineAuth({
     },
   },
 
-  userAttributes: {
-    email: {
-      mutable: false,
-      required: false,
-    },
-  },
+  // userAttributes: {
+  //   email: {
+  //     mutable: false,
+  //     required: false,
+  //   },
+  // },
   groups: ['admin', 'elevated']
 });
