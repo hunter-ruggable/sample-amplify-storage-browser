@@ -43,7 +43,7 @@ backend.addOutput({
         paths: {
           "*": {
             guest: ["get", "list"],
-            authenticated: ["get", "list", "write", "delete"], 
+            authenticated: ["get", "list",], 
             groupselevated: ["get", "list", "write", "delete"] // Added elevated group permissions
           },
         },
@@ -56,7 +56,8 @@ backend.addOutput({
         paths: {
           "*": {
             guest: ["get", "list"],
-            authenticated: ["get", "list", "write", "delete"],
+            authenticated: ["get", "list",], 
+            groupselevated: ["get", "list", "write", "delete"] 
           },
         },
       },
@@ -68,7 +69,8 @@ backend.addOutput({
         paths: {
           "*": {
             guest: ["get", "list"],
-            authenticated: ["get", "list", "write", "delete"],
+            authenticated: ["get", "list",], 
+            groupselevated: ["get", "list", "write", "delete"] 
           },
         },
       }
