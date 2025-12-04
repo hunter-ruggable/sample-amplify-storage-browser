@@ -42,7 +42,7 @@ backend.addOutput({
         paths: {
           "*": {
             guest: ["get", "list"],
-            authenticated: ["get", "list", "write", "delete"],
+            groupselevated: ["get", "list", "write", "delete"],
           },
         },
       },
