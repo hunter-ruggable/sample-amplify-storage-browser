@@ -45,6 +45,7 @@ backend.addOutput({
             authenticated: ["get", "list", "write", "delete"], 
             groups:{
               "elevated": ["get", "list", "write", "delete"] // Added elevated group permissions
+            },
           },
         },
       },
