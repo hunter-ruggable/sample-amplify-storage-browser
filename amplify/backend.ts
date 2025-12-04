@@ -39,13 +39,12 @@ backend.addOutput({
         aws_region: customBucket.env.region,
         bucket_name: customBucket.bucketName,
         name: customBucket.bucketName,
+        //@ts-expect-error amplify backend type issue https://github.com/aws-amplify/amplify-backend/issues/2569
         paths: {
           "*": {
             guest: ["get", "list"],
             authenticated: ["get", "list", "write", "delete"], 
-            groups:{
-              "elevated": ["get", "list", "write", "delete"] // Added elevated group permissions
-            },
+            groupselevated: ["get", "list", "write", "delete"] // Added elevated group permissions
           },
         },
       },
