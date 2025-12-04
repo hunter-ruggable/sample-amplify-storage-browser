@@ -52,6 +52,7 @@ backend.addOutput({
         aws_region: customBucket2.env.region,
         bucket_name: customBucket2.bucketName,
         name: customBucket2.bucketName,
+        //@ts-expect-error amplify backend type issue https://github.com/aws-amplify/amplify-backend/issues/2569
         paths: {
           "*": {
             guest: ["get", "list"],
@@ -63,6 +64,7 @@ backend.addOutput({
         aws_region: customBucket3.env.region,
         bucket_name: customBucket3.bucketName,
         name: customBucket3.bucketName,
+        //@ts-expect-error amplify backend type issue https://github.com/aws-amplify/amplify-backend/issues/2569
         paths: {
           "*": {
             guest: ["get", "list"],
