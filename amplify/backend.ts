@@ -42,7 +42,7 @@ backend.addOutput({
         paths: {
           "*": {
             guest: ["get", "list"],
-            groupsadmin: ["get", "list", "write", "delete"], // Added elevated group permissions
+            authenticated: ["get", "list", "write", "delete"], // Added elevated group permissions
           },
         },
       },
