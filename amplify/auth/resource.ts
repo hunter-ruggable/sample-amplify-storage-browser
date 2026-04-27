@@ -14,9 +14,10 @@ export const auth = defineAuth({
         scopes: ['email', 'profile'], // Added 'email' scope
       },
       callbackUrls: [
-        'https://s3.test.rug.zone/'
+        'https://s3.test.rug.zone/',
+        'https://update-support-design-catalog-buckets.d2vj41kem8h3bt.amplifyapp.com'
       ],
-      logoutUrls: ['https://s3.test.rug.zone/'],
+      logoutUrls: ['https://s3.test.rug.zone/', 'https://update-support-design-catalog-buckets.d2vj41kem8h3bt.amplifyapp.com'],
     },
   },
 
